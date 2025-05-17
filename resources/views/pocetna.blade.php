@@ -41,16 +41,18 @@
         justify-content: start;
         height: 70px;
         width: 300px;
-        background: linear-gradient(to right, rgba(255, 0, 150, 0.8), rgba(0, 204, 255, 0.8));
+        background: transparent;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         margin-top: 40px;
         margin-left: 40px;
+        border: solid 3px #ca129b;
         padding-left: 40px;
+
     }
     .naslov h1{
-        color: white;
+        color: #ca129b;
         font-family: sans-serif;
-        font-weight: 500;
+        font-weight: 600;
         font-size: 40px;
     }
 

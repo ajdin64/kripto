@@ -57,4 +57,11 @@ class Sefovi extends Controller
 
         return redirect('shop')->with('success', 'Uspješno ste kupili rudu.');
     }
+
+    function svivault()
+    {
+    $svirudnici = Vault::all();
+
+    return view('adminvault', compact('svirudnici'));
+    }
 }

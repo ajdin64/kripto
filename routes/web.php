@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Vault;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Banka;
 use App\Http\Controllers\Objavljivanje;
@@ -10,6 +11,8 @@ use App\Http\Controllers\Sefovi;
 use App\Http\Controllers\Balance;
 use App\Http\Controllers\Deposit;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\VijestiController;
+use App\Http\Controllers\Admin;
 
 Route::get('/', [Sviproizvodi::class, 'index'])->name('home');
 
@@ -62,6 +65,30 @@ Route::get('buydeposit', function () {
 
 Route::get('shop', [Sefovi::class, 'index'])
     ->middleware(['auth', 'verified'])->name('shop');
+
+Route::get('news',[VijestiController::class,'prikazi'])->middleware(['auth', 'verified'])->name('news');
+
+Route::post('objavivijesti', [VijestiController::class, 'store'])->name('objavivijesti');
+
+Route::get('/admin-objava', function () {
+    return view('adminobjava');
+})->middleware(['auth', 'verified', 'can:access-admin-panel'])->name('adminobjava');
+
+Route::get('adminpanel', [Admin::class, 'admin'])
+    ->middleware(['auth', 'verified', 'can:access-admin-panel'])
+    ->name('adminpanel');
+
+Route::get('adminproizvodi', [Sviproizvodi::class, 'proizvodiadmin'])
+    ->middleware(['auth', 'verified', 'can:access-admin-panel'])
+    ->name('adminproizvodi');
+
+Route::get('adminvault', [Sefovi::class, 'svivault'])
+    ->middleware(['auth', 'verified', 'can:access-admin-panel'])
+    ->name('adminvault');
+
+Route::get('adminsveporuke',[ContactController::class,'sveporuke'])
+    ->middleware(['auth', 'verified', 'can:access-admin-panel'])
+    ->name('adminsveporuke');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

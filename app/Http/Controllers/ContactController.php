@@ -25,4 +25,11 @@ class ContactController extends Controller
 
         return redirect('contact')->with('success', 'Poruka je uspješno poslana!');
     }
+
+    function sveporuke()
+    {
+        $sveporuke =ContactModel::all();
+
+        return view('adminsveporuke', compact('sveporuke'));
+    }
 }

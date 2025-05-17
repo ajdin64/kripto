@@ -9,7 +9,7 @@
         <!-- Logo with Crypto Icon -->
         <a class="navbar-brand d-flex align-items-center text-white fw-bold fs-3 logo" href="{{route('home')}}">
             <!-- Bitcoin Icon -->
-            <i class="fab fa-bitcoin fs-2 me-2 logo-icon"></i> Crypto
+            <i class="fas fa-gem" style="margin-right: 5px"></i> Cryptonia
         </a>
 
         <!-- Toggle -->
@@ -36,7 +36,7 @@
                     <a class="nav-link text-light animate__animated animate__fadeIn animate__delay-1.8s" href="{{route('contact')}}">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light animate__animated animate__fadeIn animate__delay-1.8s" href="#">About</a>
+                    <a class="nav-link text-light animate__animated animate__fadeIn animate__delay-1.8s" href="{{route('news')}}">News</a>
                 </li>
             </ul>
 
@@ -68,7 +68,10 @@
                         <li><a class="dropdown-item" href="{{route('profile.edit')}}"><i class="fas fa-user me-2"></i>My Profile</a></li>
                         <li><a class="dropdown-item" href="{{route('mybalance')}}"><i class="fas fa-wallet me-2"></i>My Balance</a></li>
                         <li><a class="dropdown-item" href="{{route('banka')}}"><i class="fas fa-university me-2"></i>My Bank</a></li>
-                        <li><hr class="dropdown-divider"></li>
+                        @if( Auth::user()->role == 'admin' )
+                        <li><a class="dropdown-item" href="{{route('adminpanel')}}"><i class="fas fa-user-secret me-2"></i>Admin Panel</a></li>
+                        @endif
+                            <li><hr class="dropdown-divider"></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

@@ -33,4 +33,11 @@ class Sviproizvodi extends Controller
             'iridiumruda', 'rhodiumruda', 'osmiumruda', 'plutoniumruda', 'radiumruda',
             'diamondruda', 'bluegarnetruda', 'blackopalruda', 'rubyruda', 'painiteruda'));
     }
+
+    function proizvodiadmin(){
+    $sviproizvodi = Proizvodi::with('user')->get();
+
+    return view('adminproizvodi', compact('sviproizvodi'));
+    }
+
 }
